@@ -1,6 +1,4 @@
 
-
-
 const winprobability = (
     () => {
         let emptycells = {
@@ -11,16 +9,16 @@ const winprobability = (
 
         const putemptycells = (emptycells, rowempty, colempty, rowsum, colsum) => {
             if (rowsum === -1 && rowempty.length === 1) {
-                emptycells.compwin.push(rowempty[0]);
-            }
-            if (rowsum === 1 && rowempty.length === 1) {
                 emptycells.playerwin.push(rowempty[0]);
             }
+            if (rowsum === 1 && rowempty.length === 1) {
+                emptycells.compwin.push(rowempty[0]);
+            }
             if (colsum === -1 && colempty.length === 1) {
-                emptycells.compwin.push(colempty[0]);
+                emptycells.playerwin.push(colempty[0]);
             }
             if (colsum === 1 && colempty.length === 1) {
-                emptycells.playerwin.push(colempty[0]);
+                emptycells.compwin.push(colempty[0]);
             }
 
             for (var i = 0; i < rowempty.length; i++) {
@@ -85,7 +83,7 @@ const winprobability = (
             }
         }
 
-        return  {givecell, emptycells} ;
+        return { givecell };
     }
 
 );
