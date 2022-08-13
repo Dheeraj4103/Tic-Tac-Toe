@@ -1,13 +1,17 @@
+import { winprobability } from './computer';
+import './style.css'
+const getwin = winprobability();
+
 let lastvalue = 0;
 let isformsubmit = false;
 let gameover = false;
 const playbutton = document.getElementById('play-with-friend');
-function Player( symbol) {
+function Player( sym) {
     let name = "Player1";
-    this.symbol = symbol;
+    this.sym = sym;
     let status = false;
     
-    return { name, symbol, status };
+    return { name, sym, status };
 }
 
 let game_ui = (() => {
@@ -18,10 +22,10 @@ let game_ui = (() => {
     let showPlayer = (player, div) => {
         const showname = document.createElement('h3');
         showname.innerHTML = player.name;
-        const showsymbol = document.createElement('h1');
-        showsymbol.innerHTML = (player.symbol === 0 ? 'O' : 'X');
+        const showsym = document.createElement('h1');
+        showsym.innerHTML = (player.sym === 0 ? 'O' : 'X');
         div.append(showname);
-        div.append(showsymbol);
+        div.append(showsym);
     };
     let showinfo = (info) => {
         
@@ -35,12 +39,13 @@ let game_ui = (() => {
     return { showinfo, showPlayer, declare, div1, div2 };
 })();
 const form = document.getElementById('form');
-const player1 = Player(0);
-const player2 = Player(1);
+const player1 = new Player(0);
+const player2 = new Player(1);
 
 
 
 playbutton.onclick = () => {
+    console.log("Clicked");
     form.style.display = "block";
     playbutton.style.display = 'none';
 };
@@ -87,6 +92,8 @@ var gameBoard = (() => {
             let player = (lastvalue === 0 ? player1 : player2);
             checkwin(lastvalue, player);
             lastvalue = lastvalue ^ 1;
+            console.log(getwin.givecell(Board));
+            console.log(getwin.emptycells);
             return true;
         }
         else {
@@ -95,15 +102,15 @@ var gameBoard = (() => {
         }
     };
     var checkwin = (value, player) => {
-        const symbol = player.symbol;
+        const sym = player.sym;
         let isempty = false;
         for (var row = 0; row < 3; row++) {
             let cntrow = 0, cntcol = 0;
             for (var col = 0; col < 3; col++) {
-                if (Board[row][col] === symbol) {
+                if (Board[row][col] === sym) {
                     cntrow++;
                 }
-                if (Board[col][row] === symbol) {
+                if (Board[col][row] === sym) {
                     cntcol++;
                 }
                 if (Board[row][col] === -1 || Board[col][row] === -1) {
@@ -116,16 +123,16 @@ var gameBoard = (() => {
             }
         }
         let cntdiagonal = 0;
-        cntdiagonal += (Board[0][0] === symbol ? 1 : 0);
-        cntdiagonal += (Board[1][1] === symbol ? 1 : 0);
-        cntdiagonal += (Board[2][2] === symbol ? 1 : 0);
+        cntdiagonal += (Board[0][0] === sym ? 1 : 0);
+        cntdiagonal += (Board[1][1] === sym ? 1 : 0);
+        cntdiagonal += (Board[2][2] === sym ? 1 : 0);
         if (cntdiagonal === 3) {
             game_ui.showinfo(`${player.name} won !!!`);
         }
         cntdiagonal = 0;
-        cntdiagonal += (Board[0][2] === symbol ? 1 : 0);
-        cntdiagonal += (Board[1][1] === symbol ? 1 : 0);
-        cntdiagonal += (Board[2][0] === symbol ? 1 : 0);
+        cntdiagonal += (Board[0][2] === sym ? 1 : 0);
+        cntdiagonal += (Board[1][1] === sym ? 1 : 0);
+        cntdiagonal += (Board[2][0] === sym ? 1 : 0);
         if (cntdiagonal === 3) {
             game_ui.showinfo(`${player.name} won !!!`);
         }
