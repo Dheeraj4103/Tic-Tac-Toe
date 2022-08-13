@@ -64,7 +64,7 @@ header h1 {
     text-decoration: underline;
 }
 
-button, #submit {
+button, #submit, #submit-computer {
     font-family: 'Arima', cursive;
     font-weight: bold;
     border: 0px solid black;
@@ -79,8 +79,16 @@ button, #submit {
     color: black;
     margin-top: 50px;
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    
 }
-form#form {
+
+button {
+    margin-right: 1em;
+    background-color: #ff7c5c;
+
+}
+
+form#form, form#form-computer {
     display: none;
     margin: 20px auto;
     font-size: large;
@@ -97,7 +105,7 @@ form#form {
     right: 0;
 }
 
-form#form label {
+form#form label, form#form-computer label {
     font-size: x-large;
 }
 
@@ -111,7 +119,7 @@ input {
     border-radius: 5px;
 }
 
-#submit{
+#submit, #submit-computer{
     margin-top: 10px;
     background-color: #f0da7f;
 }
@@ -126,7 +134,6 @@ input {
 }
 
 #play-with-friend {
-    background-color: #ff7c5c;
 }
 
 footer{
