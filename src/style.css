@@ -85,7 +85,7 @@ button, #submit, #submit-computer {
 button {
     margin-right: 1em;
     background-color: #ff7c5c;
-
+    padding: 0.2em 0.5em;
 }
 
 form#form, form#form-computer {
