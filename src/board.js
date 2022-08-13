@@ -36,7 +36,7 @@ let game_ui = (() => {
     let showinfo = (info) => {
 
         declare.innerHTML = info;
-       
+
         declare.style.display = block;
     }
 
@@ -127,9 +127,14 @@ var gameBoard = (() => {
                 return true;
             }
             checkwin(player2);
-            
+
             lastvalue = lastvalue ^ 1;
-            
+
+            let player = (lastvalue === 0 ? player1 : player2);
+            if (!gameover) {
+
+                game_ui.showinfo(`${player.name}'s turn`);
+            }
             return true;
         }
         else {
@@ -204,11 +209,6 @@ function clickdiv(blockid) {
             let i = id.charAt(2) - '0';
             let j = id.charAt(3) - '0';
             gameBoard.setValue(i, j, blockid);
-            let player = (lastvalue === 0 ? player1 : player2);
-            if (!gameover) {
-
-                game_ui.showinfo(`${player.name}'s turn`);
-            }
             if (computer && lastvalue === 1) {
                 setTimeout(() => {
                     const value = getwin.givecell(Board);
@@ -223,28 +223,22 @@ function clickdiv(blockid) {
             setTimeout(() => {
                 location.reload();
             }, 2000);
-        } 
-    }
-    else {
-        game_ui.showinfo("It's computer's turn");
-        setTimeout(() => {
-            game_ui.showinfo("Computer's Turn");
-        }, 1000);
+        }
     }
 }
 
 
 
- 
-    block[0].onclick = () => { clickdiv(block[0]) };
-    block[1].onclick = () => { clickdiv(block[1]) };
-    block[2].onclick = () => { clickdiv(block[2]) };
-    block[3].onclick = () => { clickdiv(block[3]) };
-    block[4].onclick = () => { clickdiv(block[4]) };
-    block[5].onclick = () => { clickdiv(block[5]) };
-    block[6].onclick = () => { clickdiv(block[6]) };
-    block[7].onclick = () => { clickdiv(block[7]) };
-    block[8].onclick = () => { clickdiv(block[8]) };
+
+block[0].onclick = () => { clickdiv(block[0]) };
+block[1].onclick = () => { clickdiv(block[1]) };
+block[2].onclick = () => { clickdiv(block[2]) };
+block[3].onclick = () => { clickdiv(block[3]) };
+block[4].onclick = () => { clickdiv(block[4]) };
+block[5].onclick = () => { clickdiv(block[5]) };
+block[6].onclick = () => { clickdiv(block[6]) };
+block[7].onclick = () => { clickdiv(block[7]) };
+block[8].onclick = () => { clickdiv(block[8]) };
 
 
 
