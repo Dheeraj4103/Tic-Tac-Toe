@@ -24,7 +24,7 @@ If you win, take a screenshot and tag me on following platforms,
 
 To deploy this project run
 
-- This will intall all project dependencies 
+- This will install all project dependencies 
 ```bash
   npm init -y
 ```
