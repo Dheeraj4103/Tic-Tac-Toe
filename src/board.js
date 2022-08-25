@@ -65,6 +65,14 @@ compplaybutton.onclick = () => {
 
 
 const formsubmit = document.getElementById('submit');
+form.addEventListener('submit', function(e) {
+    console.log("We are in eventlistner");
+    e.preventDefault();
+});
+compform.addEventListener('submit', function(e) {
+    console.log("We are in eventlistner");
+    e.preventDefault();
+});
 const compformsubmit = document.getElementById('submit-computer');
 formsubmit.onclick = () => {
     player1.name = form.elements[0].value;
@@ -123,6 +131,7 @@ var gameBoard = (() => {
             blockid.innerHTML = (lastvalue === 0 ? '0' : 'X');
             elementBoard(Board);
             checkwin(player1);
+            console.log(getwin.emptycells);
             if (gameover) {
                 return true;
             }
