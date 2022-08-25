@@ -83,7 +83,7 @@ const winprobability = (
             }
         }
 
-        return { givecell };
+        return { givecell, emptycells };
     }
 
 );
